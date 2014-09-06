@@ -1,6 +1,8 @@
 package activities;
 
 
+import verify.GPS;
+import model.ClueModel;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Intent;
@@ -25,8 +27,10 @@ import android.widget.FrameLayout;
 import com.example.shotchart.R;
 
 import fragments.CartFragment;
+import fragments.CluesListFragment;
 import fragments.GameFragment;
 import fragments.HomeFragment;
+import fragments.MakeHuntFragment;
 import fragments.StatisticsFragment;
 //import com.facebook.Request;
 //import com.facebook.Response;
@@ -44,8 +48,8 @@ import fragments.StatisticsFragment;
 public class HuntActivity extends ActionBarActivity {
 	private final String TAG = HuntActivity.class.getSimpleName();
 	private static final int HOME_FRAGMENT = 0;
-	private static final int ACCOUNT_FRAGMENT = 1;
-	private static final int SETTINGS_FRAGMENT = 2;
+	private static final int GAME_FRAGMENT = 1;
+	private static final int MAKE_FRAGMENT = 2;
 	private static final String PLACEHOLDER_STRING = "";
 	
 	public android.support.v7.app.ActionBar actionBar;
@@ -55,6 +59,7 @@ public class HuntActivity extends ActionBarActivity {
 	public CharSequence activityTitle = null;
 	public CharSequence cartDrawerTitle = null;
 
+	private ClueModel clue;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,7 @@ public class HuntActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hunt);
 		actionBar = getSupportActionBar();
 		activityTitle = actionBar.getTitle();
+		clue = new ClueModel();
 
 		// Check if there is a currently logged in user
 		// and they are linked to a Facebook account.
@@ -119,9 +125,9 @@ public class HuntActivity extends ActionBarActivity {
 //			Intent i = new Intent(HuntActivity.this, SignUpOrLogInActivity.class);
 //			startActivity(i);
 //			return true;
-		case R.id.action_settings:
-			updateMainContent(SETTINGS_FRAGMENT, null);
-			return true;
+//		case R.id.action_settings:
+//			updateMainContent(SETTINGS_FRAGMENT, null);
+//			return true;
 		case R.id.action_home:
 			// updateMainContent(SNAG_FRAGMENT, null);
 			updateMainContent(HOME_FRAGMENT, null);
@@ -136,7 +142,7 @@ public class HuntActivity extends ActionBarActivity {
 			return true;
 		case R.id.action_profile:
 			Log.i(TAG, "Profile Item Clicked");
-			updateMainContent(ACCOUNT_FRAGMENT, PLACEHOLDER_STRING);
+			updateMainContent(MAKE_FRAGMENT, PLACEHOLDER_STRING);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -156,17 +162,19 @@ public class HuntActivity extends ActionBarActivity {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 
 		switch (fragmentId) {
-		case ACCOUNT_FRAGMENT:
-			// fragment = new AccountTabbedFragment();
-			//fragment = new CustomTabFragment();
-			fragment = new StatisticsFragment();
+		case MAKE_FRAGMENT:
+			//fragment = new MakeHuntFragment();
+			fragment = new CluesListFragment();
 			break;
-		case SETTINGS_FRAGMENT:
+		case GAME_FRAGMENT:
 			fragment = new GameFragment();
 			break;
+		case 5:
+			//fragment = new GPS();
 		default:
 			// Default sets Home Fragment
-			fragment = new HomeFragment();
+			//fragment = new HomeFragment();
+			fragment = new MakeHuntFragment();
 		}
 
 		fragment.setArguments(args);
@@ -222,6 +230,9 @@ public class HuntActivity extends ActionBarActivity {
 		cartDrawerToggle.syncState();
 	}
 
+	public ClueModel getCurrentClue() {
+		return clue;
+	}
 
 	@Override
 	public void onResume() {

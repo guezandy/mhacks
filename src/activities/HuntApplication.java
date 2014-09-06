@@ -10,12 +10,22 @@ import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import android.app.Application;
 import android.util.Log;
 
 public class HuntApplication extends Application {
     private final static String TAG = HuntApplication.class.getSimpleName();
+    public static final boolean APPDEBUG = false;
+    
+    // Debugging tag for the application
+    public static final String APPTAG = "Scavenger Hunt";
+    // Key for saving the search distance preference
+    private static final String KEY_SEARCH_DISTANCE = "searchDistance";
+
+    private static SharedPreferences preferences;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -62,6 +72,17 @@ public class HuntApplication extends Application {
         defaultACL.setPublicReadAccess(true);
 
         ParseACL.setDefaultACL(defaultACL, true);
+        
+        
     }
+    
+    public static float getSearchDistance() {
+        return preferences.getFloat(KEY_SEARCH_DISTANCE, 250);
+      }
+
+      public static void setSearchDistance(float value) {
+        preferences.edit().putFloat(KEY_SEARCH_DISTANCE, value).commit();
+      }
+
  
 }

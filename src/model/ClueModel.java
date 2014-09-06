@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -39,19 +40,36 @@ public class ClueModel extends ParseObject {
 		return this.getString("clue");
 	}
 	
-	public void setPoints(String points) {
-		put("points", points);
+	public void setTitle(String points) {
+		put("title", points);
 	}
 	
-	public String getPoints() {
-		return this.getString("points");
+	public String getTitle() {
+		return this.getString("title");
 	}
 	
 	public void setType(String type) {
 		put("type", type);
 	}
 	
-	public int getType() {
-		return Integer.parseInt(this.getString("type"));
+	public String getType() {
+		return this.getString("type");
+	}
+	
+	public void setDif(String dif) {
+		put("dif", dif);
+	}
+	
+	public String getDif() {
+		return this.getString("dif");
+	}
+	
+	
+	public ParseFile getImage() {
+		return this.getParseFile("img");
+	}
+	
+	public void setImage(ParseFile image) {
+		put("img", image);
 	}
 }

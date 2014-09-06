@@ -11,6 +11,14 @@
     <string name="made">Made</string>
     <string name="miss">Miss</string>
     <string name="dismiss">Dismiss</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="save_button_text">Save</string>
+        <string name="title_activity_settings">Settings</string>
+    <string name="feet_250">250 feet</string>
+    <string name="feet_1000">1000 feet</string>
+    <string name="feet_4000">4000 feet</string>
+    <string name="search_distance">Search Distance</string>
+        <string name="post_out_of_range">Can\'t view post! Get closer.</string>
     <string name="ttp">TTP</string>
     <string name="mm">Make/Miss</string>
     <string name="x">X</string>
@@ -28,4 +36,22 @@
     <string name="description"></string>
     <string name="home_des">home screen description graphics etc</string>
     <string name="create">Create</string>
+    <string-array name="clue_array">
+        <item>Text</item>
+        <item>Photo</item>
+        <item>GPS</item>
+        <item>Video</item>
+    </string-array>
+    <string-array name="dif_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+        <string name="insert_clue">Insert clue string</string>
+        <string name="submit">Submit</string>
+        <string name="save_button_text">Save</string>
+        <string name="save">Save</string>
+        <string name="clue_title">Insert Clue Title</string>
+        <string name="verify">Verify</string>
+        <string name="send">Send GPS Location</string>
 </resources>
