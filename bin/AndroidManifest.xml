@@ -4,15 +4,34 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="18" />
+    
+    <permission
+        android:name="com.example.shotchart.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" >
+    </permission>
+
+    <uses-permission android:name="com.parse.anywall.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+     The following permission is not required to use
+     Google Maps Android API v2, but is recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
+        <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
     
     <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-feature android:name="android.hardware.camera" />
 	<uses-feature android:name="android.hardware.camera.autofocus"/>
-
+	
+        
     <application
         android:name="activities.HuntApplication"
         android:allowBackup="true"
@@ -23,16 +42,29 @@
         <activity
             android:name="activities.HuntActivity"
             android:label="@string/app_name" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-                <activity
+        <activity
+            android:name="activities.GPS"
+            android:label="@string/app_name" >
+ 
+        </activity>
+        <activity
             android:name="activities.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCdFPFoQDERxqsoe94BgSXQ5VRho-MnrkM" />
+        
+        <meta-data android:name="com.google.android.gms.version" 
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name="activities.SignUpActivity"
             android:label="@string/app_name"

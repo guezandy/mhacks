@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -61,14 +62,6 @@ public class MakeHuntFragment extends Fragment{
 	private Spinner difSpinner;
     ActionBar actionBar;
     
-    public static GameFragment newInstance(String param) {
-        GameFragment fragment = new GameFragment();
-        Bundle args = new Bundle();
-        args.putString("param", param);
-        fragment.setArguments(args);
-        return fragment;
-    }
-    
     
     
     @Override
@@ -83,7 +76,7 @@ public class MakeHuntFragment extends Fragment{
 		final EditText clueString = ((EditText) mLinearLayout.findViewById(R.id.clueString));
 		final EditText clueTitle = ((EditText) mLinearLayout.findViewById(R.id.clueTitle));
 		
-    	String game = this.getArguments().getString("param");
+    	//String game = this.getArguments().getString("param");
 
     	spinner = (Spinner) mLinearLayout.findViewById(R.id.clues_spinner);
     	// Create an ArrayAdapter using the string array and a default spinner layout
@@ -139,10 +132,10 @@ public class MakeHuntFragment extends Fragment{
 				clue.setAuthor(ParseUser.getCurrentUser());
 
 				// Add the type
-				clue.setType(spinner.getSelectedItem().toString());
+				//clue.setType(spinner.getSelectedItem().toString());
 				
 				//Add the dif
-				clue.setDif(difSpinner.getSelectedItem().toString());
+				//clue.setDif(difSpinner.getSelectedItem().toString());
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
@@ -155,7 +148,7 @@ public class MakeHuntFragment extends Fragment{
 						if (e == null) {
 							getActivity().setResult(Activity.RESULT_OK);
 							//Intent i = new Intent(getActivity(), )
-							getActivity().finish();
+							replaceFrag();
 						} else {
 							Toast.makeText(
 									getActivity().getApplicationContext(),
@@ -228,7 +221,14 @@ public class MakeHuntFragment extends Fragment{
 		}
 	}
 
-    
+    @SuppressWarnings("null")
+	public void replaceFrag() {
+    	FragmentManager fragmentManager2 = getFragmentManager();
+    	//FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+    	Fragment fragment2 = new CluesListFragment();
+		fragmentManager2.beginTransaction().replace(R.id.activity_frame, fragment2).addToBackStack("tag")
+		.commit();
+    }
     
     public MakeHuntFragment() {
         // TODO Auto-generated constructor stub

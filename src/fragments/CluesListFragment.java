@@ -1,5 +1,7 @@
 package fragments;
 
+import com.example.shotchart.R;
+
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.os.Build;
@@ -31,7 +33,7 @@ public class CluesListFragment extends ListFragment {
 		Log.i(TAG, "onActivityCreated");
 		super.onActivityCreated(savedInstanceState);
 		clueAdapter = new ClueAdapter(this.getActivity().getApplicationContext());
-		
+		//getListView().addFooterView(R.layout.header);
 		getListView().setClickable(false);
 		setListAdapter(clueAdapter);
 	}

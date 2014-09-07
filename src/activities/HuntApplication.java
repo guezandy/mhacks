@@ -2,6 +2,7 @@ package activities;
 
 
 import model.ClueModel;
+import model.VerifyModel;
 
 
 import  com.example.shotchart.R;
@@ -36,7 +37,7 @@ public class HuntApplication extends Application {
          * create and modify Meal objects
          */
         ParseObject.registerSubclass(ClueModel.class);
-
+        ParseObject.registerSubclass(VerifyModel.class);
 
         /*
          * Fill in this section with your Parse credentials
@@ -77,7 +78,7 @@ public class HuntApplication extends Application {
     }
     
     public static float getSearchDistance() {
-        return preferences.getFloat(KEY_SEARCH_DISTANCE, 250);
+        return 250;
       }
 
       public static void setSearchDistance(float value) {

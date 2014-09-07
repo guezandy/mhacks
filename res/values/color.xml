@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
  <color name="orange">#ff5500</color>
+ <color name="green_header">#7BC6AC</color>
  <color name="back_ground">#ff8869</color>
  <color name="transparent">#00000000</color>
  <color name="date_color">#999999</color>

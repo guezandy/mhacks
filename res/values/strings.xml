@@ -54,4 +54,6 @@
         <string name="clue_title">Insert Clue Title</string>
         <string name="verify">Verify</string>
         <string name="send">Send GPS Location</string>
+        <string name="fb">Login with Facebook</string>
+        <string name="enterCode">Enter Access Code</string>
 </resources>

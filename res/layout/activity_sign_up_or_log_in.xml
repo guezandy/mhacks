@@ -1,32 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@android:style/Theme.Holo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SignUpOrLogInActivity" >
-
-    <Button
-        android:id="@+id/logInButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="128dp"
-        android:text="@string/log_in" />
-
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/logInButton"
-        android:text="@string/sign_up" />
 
     <TextView
         android:id="@+id/textView1"
@@ -48,23 +29,53 @@
         android:text="@string/parse"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <Button
+        android:id="@+id/fbLoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/signUpButton"
+        android:background="@drawable/button_login"
+        android:text="Login"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fbLoginButton"
+        android:layout_alignParentLeft="true"
+        android:text="@string/sign_up" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/signUpButton"
+        android:layout_alignLeft="@+id/signUpButton"
+        android:layout_alignRight="@+id/signUpButton"
+        android:text="@string/log_in" />
+
+    <ImageView
+        android:id="@+id/create1"
+        android:layout_below="@+id/textView3"
+        android:paddingTop="10dp"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" />
+
+    <ui.TextViewRobotoRegular
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
-        android:text="@string/description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textView3"
-        android:text="@string/slogan"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Scavy"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/green_header"
+        android:textSize="50dp" />
 
 </RelativeLayout>

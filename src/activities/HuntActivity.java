@@ -1,7 +1,7 @@
 package activities;
 
 
-import verify.GPS;
+import activities.GPS;
 import model.ClueModel;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -30,8 +30,10 @@ import fragments.CartFragment;
 import fragments.CluesListFragment;
 import fragments.GameFragment;
 import fragments.HomeFragment;
+import fragments.MainMenuFragment;
 import fragments.MakeHuntFragment;
 import fragments.StatisticsFragment;
+import fragments.VerifyImage;
 //import com.facebook.Request;
 //import com.facebook.Response;
 //import com.facebook.Session;
@@ -42,6 +44,7 @@ import fragments.StatisticsFragment;
 //import com.parse.ParseObject;
 //import com.parse.ParseQuery;
 //import com.parse.ParseUser;
+import fragments.VerifyText;
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -50,6 +53,9 @@ public class HuntActivity extends ActionBarActivity {
 	private static final int HOME_FRAGMENT = 0;
 	private static final int GAME_FRAGMENT = 1;
 	private static final int MAKE_FRAGMENT = 2;
+	private static final int JOIN_FRAGMENT = 3;
+
+	
 	private static final String PLACEHOLDER_STRING = "";
 	
 	public android.support.v7.app.ActionBar actionBar;
@@ -164,17 +170,22 @@ public class HuntActivity extends ActionBarActivity {
 		switch (fragmentId) {
 		case MAKE_FRAGMENT:
 			//fragment = new MakeHuntFragment();
-			fragment = new CluesListFragment();
+			fragment = new MakeHuntFragment();
 			break;
 		case GAME_FRAGMENT:
 			fragment = new GameFragment();
 			break;
+		
 		case 5:
-			//fragment = new GPS();
+			fragment = new VerifyText();
+			break;
+		case 6:
+			VerifyImage something = new VerifyImage();
+			fragment = VerifyImage.newInstance("something");
 		default:
 			// Default sets Home Fragment
 			//fragment = new HomeFragment();
-			fragment = new MakeHuntFragment();
+			fragment = new MainMenuFragment();
 		}
 
 		fragment.setArguments(args);
@@ -186,6 +197,17 @@ public class HuntActivity extends ActionBarActivity {
 				.commit();
 		cartDrawerLayout.closeDrawer(cartDrawerFrame);
 
+	}
+	
+	public void updateMainActivity(int id) {
+		switch(id) {
+			
+		case 3:
+			System.out.println("Updating main content");
+			Intent i = new Intent(HuntActivity.this, GPS.class);
+			startActivity(i);
+			break;
+		}
 	}
 
 	@Override
@@ -263,13 +285,13 @@ public class HuntActivity extends ActionBarActivity {
 		cartDrawerFrame = (FrameLayout) findViewById(R.id.right_drawer);
 
 		// create the cart drawer fragment
-		android.app.Fragment fragment = new CartFragment();//new CartFragment();
+		Fragment fragment = new CartFragment();//new CartFragment();
 		Bundle args = new Bundle();
 		fragment.setArguments(args);
 		// Insert the fragment by replacing any existing fragment
 		android.app.FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.right_drawer, fragment)
-				.commit();
+		//fragmentManager.beginTransaction().replace(R.id.right_drawer, fragment)
+		//		.commit();
 
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon

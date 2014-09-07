@@ -1,8 +1,8 @@
 package adapters;
 
 
-import verify.GPS;
 import model.ClueModel;
+import activities.GPS;
 import activities.HuntActivity;
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +25,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 import fragments.StatisticsFragment;
+import android.support.v7.app.ActionBarActivity;
 
 /*
  * The FavoriteTagHistoryItemAdapter is an extension of ParseQueryAdapter
@@ -107,21 +108,23 @@ public class ClueAdapter extends ParseQueryAdapter<ClueModel> {
 		verify.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Activity act = new HuntActivity();
 				System.out.println("Inside on click clue: "+Clue.getType());
 				if(Clue.getType().equals("GPS")) {
 					System.out.println("Equal gps");
 					//Intent i = new Intent(v.getContext(), GPS.class);
 					//v.getContext().startActivity(i);
-					Activity act = new Activity();
-					((HuntActivity) act).updateMainContent(5, null);
-					getEasterEgg(3);
+					((HuntActivity) act).updateMainActivity(3);
+					//getEasterEgg(3);
 					System.out.println("GPS");
-				} else if(Clue.getType() == "Text") {
+				} else if(Clue.getType().equals("Text")) {
+					((HuntActivity) act).updateMainContent(5, null);
 					getEasterEgg(1);
-				} else if(Clue.getType() == "Photo") {
+				} else if(Clue.getType().equals("Photo")) {
+					((HuntActivity) act).updateMainContent(6, null);
 					getEasterEgg(2);
 					System.out.println("Photo");
-				} else if(Clue.getType() == "Video") {
+				} else if(Clue.getType().equals("Video")) {
 					getEasterEgg(4);
 				}
 			}	
