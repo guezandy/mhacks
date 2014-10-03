@@ -37,56 +37,55 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
-
-@SuppressLint("CommitTransaction")
-public class VerifyText extends Fragment {
+public class VerifyText extends Activity {
     private final String TAG = VerifyText.class.getSimpleName(); 
-	ParseUser user = new ParseUser();
+	ParseUser user;
 	String solution;
 	String clueTitle;
     ActionBar actionBar;
     
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
-    	
-    	//LinearLayout mLinearLayout = (LinearLayout) inflater.inflate(R.layout.fragment_home,
-        //        container, false);
-    	final RelativeLayout mLinearLayout = (RelativeLayout) inflater.inflate(R.layout.response_text,
-                container, false);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.response_text);
+		final ParseUser user = new ParseUser();
+		final String solution;
+		final String clueTitle= "";
+	    final ActionBar actionBar;
+	    final Bundle extras = getIntent().getExtras(); 
+	    
+	    
 
-    	actionBar = getActivity().getActionBar();
-    	final EditText textVerify = (EditText) mLinearLayout.findViewById(R.id.response_text);
+    	actionBar = getActionBar();
+    	final EditText textVerify = (EditText) findViewById(R.id.response_text);
     	
-    	Button submit = (Button) mLinearLayout.findViewById(R.id.textVerify);
+    	Button submit = (Button) findViewById(R.id.textVerify);
     	submit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				user.getCurrentUser();
-				solution = textVerify.getText().toString();
-clueTitle = "";
 
 				VerifyModel ver = new VerifyModel();
-				ver.setTitle(solution);
+				ver.setString(textVerify.getText().toString());
 				ver.setAuthor(user.getCurrentUser());
-				ver.setClueID(clueTitle);
+				ver.setClueID(extras.getString("clueTitle"));
 				// Save the meal and return
 				ver.saveInBackground(new SaveCallback() {
 
 					@Override
 					public void done(ParseException e) {
 						if (e == null) {
-							getActivity().setResult(Activity.RESULT_OK);
+							setResult(Activity.RESULT_OK);
 							//Intent i = new Intent(getActivity(), )
-							getActivity().finish();
+							finish();
 						} else {
 							Toast.makeText(
-									getActivity().getApplicationContext(),
+									getApplicationContext(),
 									"Error saving: " + e.getMessage(),
 									Toast.LENGTH_SHORT).show();
 						}
@@ -100,25 +99,7 @@ clueTitle = "";
  //   	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     	
         // Inflate the layout for this fragment
-        return mLinearLayout;
-    }
-    
-    @SuppressWarnings("null")
-	public void replaceFrag() {
-    	FragmentManager fragmentManager2 = getFragmentManager();
-    	FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-    	Fragment fragment2 = new GameFragment();
-    	fragmentTransaction2.addToBackStack("xyz");
-    	fragmentTransaction2.hide(VerifyText.this);
-    	
-    	////////////////////
-    	Activity act = new Activity();
-    	((HuntActivity) act).updateMainContent(2, null);
-    	fragmentTransaction2.add(fragment2, "start");
-		//fragmentManager2.beginTransaction().replace(R.id.activity_frame, fragment2).addToBackStack("tag")
-		//.commit();
-    	//fragmentTransaction2.add(R.id.activity_frame, fragment2);
-    	fragmentTransaction2.commit();
+        //return mLinearLayout;
     }
     
     public VerifyText() {

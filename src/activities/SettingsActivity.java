@@ -26,9 +26,9 @@ public class SettingsActivity extends Activity {
     // The search distance choices
     searchDistanceGroup = (RadioGroup) findViewById(R.id.searchDistanceGroup);
     float searchDistance = HuntApplication.getSearchDistance();
-    if (searchDistance > 1000f) {
+    if (searchDistance == 30) {
       searchDistanceGroup.check(R.id.feet4000Button);
-    } else if (searchDistance > 250f) {
+    } else if (searchDistance == 7) {
       searchDistanceGroup.check(R.id.feet1000Button);
     } else {
       searchDistanceGroup.check(R.id.feet250Button);
@@ -38,13 +38,13 @@ public class SettingsActivity extends Activity {
       public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
         case R.id.feet4000Button:
-          HuntApplication.setSearchDistance(4000);
+          HuntApplication.setSearchDistance(30);
           break;
         case R.id.feet1000Button:
-          HuntApplication.setSearchDistance(1000);
+          HuntApplication.setSearchDistance(7);
           break;
         case R.id.feet250Button:
-          HuntApplication.setSearchDistance(250);
+          HuntApplication.setSearchDistance(1);
           break;
         }
       }
@@ -56,7 +56,7 @@ public class SettingsActivity extends Activity {
         // Call the Parse log out method
         ParseUser.logOut();
         // Start and intent for the dispatch activity
-        Intent intent = new Intent(SettingsActivity.this, HuntActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, SignUpOrLogInActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
       }

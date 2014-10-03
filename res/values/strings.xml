@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Hunt</string>
+    <string name="app_name">Reflection</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_profile">Profile</string>
@@ -14,10 +14,11 @@
     <string name="cancel_button_text">Cancel</string>
     <string name="save_button_text">Save</string>
         <string name="title_activity_settings">Settings</string>
-    <string name="feet_250">250 feet</string>
-    <string name="feet_1000">1000 feet</string>
-    <string name="feet_4000">4000 feet</string>
-    <string name="search_distance">Search Distance</string>
+    <string name="feet_250">Day</string>
+    <string name="feet_1000">Week</string>
+    <string name="feet_4000">Month</string>
+        <string name="facebook_id">684920414900634</string>
+    <string name="search_distance">Reflect Once a</string>
         <string name="post_out_of_range">Can\'t view post! Get closer.</string>
     <string name="ttp">TTP</string>
     <string name="mm">Make/Miss</string>
@@ -40,7 +41,6 @@
         <item>Text</item>
         <item>Photo</item>
         <item>GPS</item>
-        <item>Video</item>
     </string-array>
     <string-array name="dif_array">
         <item>Easy</item>
@@ -56,4 +56,11 @@
         <string name="send">Send GPS Location</string>
         <string name="fb">Login with Facebook</string>
         <string name="enterCode">Enter Access Code</string>
+        <string name="action_new_clue">New Clue</string>
+        <string name="back">Back</string>
+        <string name="what">Describe your photo...</string>
+        <string name="moderator">Moderator Login</string>
+        <string name="howTO">How To use this app.....</string>
+        <string name="sub">One day your reflection will come back</string>
+        <string name="quote">\"If this view becomes nothing new to you. Just remember once it was beautiful\"</string>
 </resources>

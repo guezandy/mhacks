@@ -181,6 +181,14 @@ public class GPS extends FragmentActivity implements LocationListener,
           }
         };
 
+    Button stop = (Button) this.findViewById(R.id.back);
+    stop.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			endGPS();
+		}
+    });
+        
     // Set up the query adapter
     posts = new ParseQueryAdapter<VerifyModel>(this, factory) {
       @Override
@@ -257,7 +265,7 @@ public class GPS extends FragmentActivity implements LocationListener,
         final ParseGeoPoint myPoint = geoPointFromLocation(myLoc);
         // Create the builder where the new post is entered
         AlertDialog.Builder alert = new AlertDialog.Builder(GPS.this);
-        alert.setTitle("Create a Post");
+        alert.setTitle("Describe where you are....");
         final EditText input = new EditText(GPS.this);
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         alert.setView(input);
@@ -271,6 +279,7 @@ public class GPS extends FragmentActivity implements LocationListener,
             post.setString(input.getText().toString());
             post.setAuthor(ParseUser.getCurrentUser());
             ParseACL acl = new ParseACL();
+            post.setClueID(HuntApplication.getCurrentClueString());
             // Give public read access
             acl.setPublicReadAccess(true);
             post.setACL(acl);
@@ -347,6 +356,7 @@ public class GPS extends FragmentActivity implements LocationListener,
     // Query for the latest data to update the views.
     doMapQuery();
     doListQuery();
+    //endGPS();
   }
 
   /*
@@ -394,6 +404,11 @@ public class GPS extends FragmentActivity implements LocationListener,
     }
   }
 
+  
+  public void endGPS(){
+	  Intent i = new Intent(GPS.this, HuntActivity.class);
+	  startActivity(i);
+  }
   /*
    * Verify that Google Play services is available before making a request.
    * 

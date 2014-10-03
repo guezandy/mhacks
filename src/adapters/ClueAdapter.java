@@ -5,7 +5,9 @@ import model.ClueModel;
 import activities.GPS;
 import activities.HuntActivity;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -56,7 +58,7 @@ public class ClueAdapter extends ParseQueryAdapter<ClueModel> {
 			ViewGroup parent) {
 
 		if (v == null) {
-			v = View.inflate(getContext(), R.layout.row_objective,
+			v = View.inflate(getContext(), R.layout.row_make_objective,
 					null);
 		}
 
@@ -98,37 +100,54 @@ public class ClueAdapter extends ParseQueryAdapter<ClueModel> {
 				
 			} else if(Clue.getType() == " Image") {
 				
-			} else if(Clue.getType() == "Video") {
-				
+			} else if(ClueImage != null && Clue.getType() == "Video") {
+				ClueImage.setImageResource(R.drawable.video_camera);
 			}
 		}
 		
-		ImageButton completed = (ImageButton) v.findViewById(R.id.lvDelete);
-		Button verify = (Button) v.findViewById(R.id.verify);
-		verify.setOnClickListener(new OnClickListener() {
+		final DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		            //Yes button clicked
+		            break;
+
+		        case DialogInterface.BUTTON_NEGATIVE:
+		            //No button clicked
+		            break;
+		        }
+		    }
+		};
+
+		final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+		
+		ImageButton delete = (ImageButton) v.findViewById(R.id.lvDelete);
+		delete.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Activity act = new HuntActivity();
-				System.out.println("Inside on click clue: "+Clue.getType());
-				if(Clue.getType().equals("GPS")) {
-					System.out.println("Equal gps");
-					//Intent i = new Intent(v.getContext(), GPS.class);
-					//v.getContext().startActivity(i);
-					((HuntActivity) act).updateMainActivity(3);
-					//getEasterEgg(3);
-					System.out.println("GPS");
-				} else if(Clue.getType().equals("Text")) {
-					((HuntActivity) act).updateMainContent(5, null);
-					getEasterEgg(1);
-				} else if(Clue.getType().equals("Photo")) {
-					((HuntActivity) act).updateMainContent(6, null);
-					getEasterEgg(2);
-					System.out.println("Photo");
-				} else if(Clue.getType().equals("Video")) {
-					getEasterEgg(4);
-				}
-			}	
+				
+				builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+			    .setNegativeButton("No", dialogClickListener).show();
+				
+//				ParseQuery<ParseObject> query = ParseQuery
+//						.getQuery("ClueModel");
+//
+//				// Retrieve the object by id
+//				query.getInBackground(Clue.getObjectId(),
+//						new GetCallback<ParseObject>() {
+//							public void done(ParseObject item, ParseException e) {
+//								if (e == null) {
+//									// Now let's update it with some new data.
+//									// In this case, only cheatMode and score
+//									item.deleteInBackground();
+//									Toast.makeText(getContext(), "Item deleted from Hunt", Toast.LENGTH_SHORT).show();
+//								}
+//							}
+//						});
+			}
 		});
+		
 		return v;
 	}
 	

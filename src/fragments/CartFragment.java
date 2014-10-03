@@ -24,6 +24,7 @@ public class CartFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "Inside taghistoryfragment on create");
+		System.out.println("Creating Cart Frag");
 		
 	}
 	@Override

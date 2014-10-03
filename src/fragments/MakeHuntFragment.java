@@ -14,6 +14,7 @@ import com.parse.SaveCallback;
 
 
 import activities.HuntActivity;
+import activities.MainMenu;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,6 +28,7 @@ import android.content.Intent;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -52,7 +54,7 @@ import android.widget.Toast;
 
 
 public class MakeHuntFragment extends Fragment{
-    private final String TAG = HomeFragment.class.getSimpleName();
+    private final String TAG = MakeHuntFragment.class.getSimpleName();
 	public int clueType;
 	public int clueDif;
 	private ImageButton photoButton;
@@ -132,10 +134,10 @@ public class MakeHuntFragment extends Fragment{
 				clue.setAuthor(ParseUser.getCurrentUser());
 
 				// Add the type
-				//clue.setType(spinner.getSelectedItem().toString());
+				clue.setType(spinner.getSelectedItem().toString());
 				
 				//Add the dif
-				//clue.setDif(difSpinner.getSelectedItem().toString());
+				clue.setDif(difSpinner.getSelectedItem().toString());
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
@@ -197,6 +199,7 @@ public class MakeHuntFragment extends Fragment{
 				.beginTransaction();
 		transaction.replace(R.id.activity_frame, cameraFragment);
 		transaction.addToBackStack("MakeHuntFragment");
+		Log.i(TAG,"about to commit in makehunt");
 		transaction.commit();
 	}
 
@@ -208,7 +211,7 @@ public class MakeHuntFragment extends Fragment{
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((HuntActivity) getActivity())
+		ParseFile photoFile = ((MainMenu) getActivity())
 				.getCurrentClue().getImage();
 		if (photoFile != null) {
 			cluePreview.setParseFile(photoFile);

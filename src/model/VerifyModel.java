@@ -75,6 +75,13 @@ public class VerifyModel extends ParseObject {
 	    put("location", value);
 	 }
 
+	 public void setVerified(Boolean s) {
+		 put("verified", s);
+	 }
+	 
+	 public Boolean getVerified() {
+		 return this.getBoolean("verified");
+	 }
 	
 	//for images
 	public ParseFile getImage() {

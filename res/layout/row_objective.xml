@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:gravity="right"
-                android:src="@android:drawable/button_onoff_indicator_off" />
+                android:src="@android:drawable/btn_star_big_off" />
 
             <ui.TextViewRobotoRegular
                 android:id="@+id/o_title"

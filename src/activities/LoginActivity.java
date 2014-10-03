@@ -60,6 +60,7 @@ public class LoginActivity extends Activity {
 
         // Set up a progress dialog
         final ProgressDialog dlg = new ProgressDialog(LoginActivity.this);
+        
         dlg.setTitle("Please wait.");
         dlg.setMessage("Logging in.  Please wait.");
         dlg.show();
@@ -75,7 +76,7 @@ public class LoginActivity extends Activity {
               Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             } else {
               // Start an intent for the dispatch activity
-              Intent intent = new Intent(LoginActivity.this, HuntActivity.class);
+              Intent intent = new Intent(LoginActivity.this, RefMainMenu.class);
               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
               startActivity(intent);
             }

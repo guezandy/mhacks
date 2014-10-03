@@ -3,6 +3,7 @@ package activities;
 
 import activities.GPS;
 import model.ClueModel;
+import model.VerifyModel;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.widget.FrameLayout;
 
 import com.example.shotchart.R;
 
+import fragments.AccessCodeFragment;
 import fragments.CartFragment;
 import fragments.CluesListFragment;
 import fragments.GameFragment;
@@ -66,6 +68,7 @@ public class HuntActivity extends ActionBarActivity {
 	public CharSequence cartDrawerTitle = null;
 
 	private ClueModel clue;
+	private ClueModel model;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class HuntActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hunt);
 		actionBar = getSupportActionBar();
 		activityTitle = actionBar.getTitle();
-		clue = new ClueModel();
+		//clue = new ClueModel();
 
 		// Check if there is a currently logged in user
 		// and they are linked to a Facebook account.
@@ -175,13 +178,6 @@ public class HuntActivity extends ActionBarActivity {
 		case GAME_FRAGMENT:
 			fragment = new GameFragment();
 			break;
-		
-		case 5:
-			fragment = new VerifyText();
-			break;
-		case 6:
-			VerifyImage something = new VerifyImage();
-			fragment = VerifyImage.newInstance("something");
 		default:
 			// Default sets Home Fragment
 			//fragment = new HomeFragment();
@@ -198,17 +194,7 @@ public class HuntActivity extends ActionBarActivity {
 		cartDrawerLayout.closeDrawer(cartDrawerFrame);
 
 	}
-	
-	public void updateMainActivity(int id) {
-		switch(id) {
-			
-		case 3:
-			System.out.println("Updating main content");
-			Intent i = new Intent(HuntActivity.this, GPS.class);
-			startActivity(i);
-			break;
-		}
-	}
+
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -278,20 +264,23 @@ public class HuntActivity extends ActionBarActivity {
 	 * Adds the cart fragment to the right drawer
 	 */
 	private void prepareCartDrawer() {
-		//Log.i(TAG, "onPrepareCartDrawer");
+		Log.i(TAG, "onPrepareCartDrawer");
 		// Set up cart drawer, in progress
+		
 		cartDrawerTitle = "Cart";
 		cartDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		cartDrawerFrame = (FrameLayout) findViewById(R.id.right_drawer);
-
+System.out.println("IN HERE");
 		// create the cart drawer fragment
 		Fragment fragment = new CartFragment();//new CartFragment();
 		Bundle args = new Bundle();
 		fragment.setArguments(args);
 		// Insert the fragment by replacing any existing fragment
-		android.app.FragmentManager fragmentManager = getFragmentManager();
-		//fragmentManager.beginTransaction().replace(R.id.right_drawer, fragment)
-		//		.commit();
+		FragmentManager fragmentManager = this.getSupportFragmentManager();
+		
+		
+		fragmentManager.beginTransaction().replace(R.id.right_drawer, fragment)
+				.commit();
 
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon

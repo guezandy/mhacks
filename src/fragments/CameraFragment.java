@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.example.shotchart.R;
 
 import activities.HuntActivity;
+import activities.MainMenu;
+import activities.RefMainMenu;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.graphics.Bitmap;
@@ -161,11 +163,11 @@ System.out.println("4");
 	 * until we reach that Fragment.
 	 */
 	private void addPhotoToMealAndReturn(ParseFile photoFile) {
-		((HuntActivity) getActivity()).getCurrentClue().setImage(
+		((RefMainMenu) getActivity()).getCurrentClue().setImage(
 				photoFile);
 		FragmentManager fm = getActivity().getFragmentManager();
 		System.out.println("Inside add photo to meal and return");
-		fm.popBackStack("MakeHuntFragment",
+		fm.popBackStack("VerifyImage",
 				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 	}
 
